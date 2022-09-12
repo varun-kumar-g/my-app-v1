@@ -1,0 +1,39 @@
+<div class="container">
+  <form #loginForm="ngForm">
+    <h2 class="form-signin-heading">Login</h2>
+    <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
+    <br />
+    <label for="username" class="sr-only">Email address</label>
+    <input type="email" id="username" required minlength="3" maxlength="50" name="username"   #username="ngModel" [(ngModel)]="credentials.username"
+      class="form-control" placeholder="User Name" required>
+    <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert">
+      <div *ngIf="username.errors?.['required']">
+        Email address is required.
+      </div>
+      <div *ngIf="username.errors?.['minlength']">
+        Email address must be at least 4 characters long.
+      </div>
+      <div *ngIf="username.errors?.['maxlength']">
+        The max permissible length is 50 characters
+      </div>
+    </div>
+    <br />
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" id="password" required minlength="3" maxlength="50"   #password="ngModel" name="password" [(ngModel)]="credentials.password"
+      class="form-control" placeholder="Password" required>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
+      <div *ngIf="password.errors?.['required']">
+        Email address is required.
+      </div>
+      <div *ngIf="password.errors?.['minlength']">
+        Email address must be at least 4 characters long.
+      </div>
+      <div *ngIf="password.errors?.['maxlength']">
+        The max permissible length is 50 characters
+      </div>
+    </div>
+    <br />
+    <button class="btn btn-lg btn-primary" (click)="login(loginForm)" type="submit" [disabled]="!loginForm.valid">Log
+      in</button>
+  </form>
+</div>

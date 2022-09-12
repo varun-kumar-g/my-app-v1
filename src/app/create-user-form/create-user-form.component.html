@@ -1,0 +1,51 @@
+<div class="container">
+    <form #submitForm="ngForm" (ngSubmit)="addUser()">
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input class="form-control" id="firstName" required minlength="3"  #firstName="ngModel" maxlength="50" name = "firstName" [value]='user.firstName' [(ngModel)]="this.user.firstName" >
+          <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert">
+            <div *ngIf="firstName.errors?.['required']">
+              First Name is required.
+            </div>
+            <div *ngIf="firstName.errors?.['minlength']">
+              First Name must be at least 4 characters long.
+            </div>
+            <div *ngIf="firstName.errors?.['maxlength']">
+              The max permissible length is 50 characters
+            </div>
+          </div>
+          </div>
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input class="form-control" id="lastName" required minlength="3" maxlength="50"  #lastName="ngModel" name = "lastName"  [value]='user.lastName' [(ngModel)]="this.user.lastName">
+          <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert">
+            <div *ngIf="lastName.errors?.['required']">
+              Last Name is required.
+            </div>
+            <div *ngIf="lastName.errors?.['minlength']">
+              Last Name must be at least 4 characters long.
+            </div>
+            <div *ngIf="lastName.errors?.['maxlength']">
+              The max permissible length is 50 characters
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+            <label for="dateOfBirth" class="form-label">Date Of Birth</label>
+            <input class="form-control" id="dateOfBirth" required minlength="3" maxlength="50"   #dateOfBirth="ngModel" name = "dateOfBirth"  [value]='user.dateOfBirth' [(ngModel)]="this.user.dateOfBirth">
+            <div *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)" class="alert">
+              <div *ngIf="dateOfBirth.errors?.['required']">
+                Date Of Birth is required.
+              </div>
+              <div *ngIf="dateOfBirth.errors?.['minlength']">
+                Date Of Birth must be at least 4 characters long.
+              </div>
+              <div *ngIf="dateOfBirth.errors?.['maxlength']">
+                The max permissible length is 50 characters
+              </div>
+            </div>
+          </div>
+        <button type="submit" [disabled]="submitForm.invalid" (click)="addUser()" [disabled]="!submitForm.valid" class="btn btn-primary">Save</button>
+      </form>
+</div>
+
